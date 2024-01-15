@@ -1,0 +1,45 @@
+cd Documents 
+git init Labb1Git
+cd Labb1Git
+New-Item -ItemType File -Path "README.md" -force
+"duck", "moose", "cat" | Add-Content -Path README.md
+Get-Content README.md
+git add README.md
+git commit -m "Initial commit"
+git checkout -b feature1
+"dog" | Add-Content -Path README.md -NoNewline
+(Get-Content README.md) -replace 'moose', 'mouse' | Set-Content README.md
+git add README.md
+git commit -m "Add dog, replace moose with mouse"
+Get-Content README.md
+git checkout main
+(Get-Content README.md) -replace 'moose', 'mahmut' | Set-Content README.md
+git add README.md
+git commit -m "Change moose to mahmut on main branch"
+git checkout main
+git merge feature1
+git add README.md
+git merge --continue
+git tag extinct
+git show extinct
+git reset --hard HEAD^1
+git checkout -b feature2
+git switch main
+$content = Get-Content -Path "README.md"
+$content = $content | ForEach-Object { $_.Substring(0,1).ToUpper() + $_.Substring(1) }
+$content | Set-Content -Path "README.md" -Force
+git add README.md
+git commit -m "Capitalize the first letter of each animal name"
+git checkout feature2
+New-Item -ItemType File -Name "fix1.txt" -force
+git add fix1.txt
+git commit -m "Add fix1.txt"
+New-Item -ItemType File -Name "fix2.txt" -Force
+git add fix2.txt
+git commit -m "Add fix2.txt"
+git checkout main
+Get-ChildItem
+git checkout feature2
+git log
+git checkout main
+git cherry-pick 6b82be
