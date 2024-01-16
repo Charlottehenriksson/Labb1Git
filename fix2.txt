@@ -48,3 +48,14 @@ git commit -m "Add commands in fix2.txt"
 git remote add origin https://github.com/Charlottehenriksson/Labb1Git.git
 git push --all origin
 git push origin extinct
+git checkout main
+git tag -a v1.0 -m "Version 1.0"
+git push origin v1.0
+git checkout main
+git rebase -i HEAD~2
+git checkout -b feature3
+git add fix2.txt
+git commit -m "Added commands for 18,19,20 in fix2.txt at feature3 branch"
+git checkout main
+git merge --no-ff feature3 -m "Merge feature3 branch with new commands"
+git push --all origin
